@@ -19,5 +19,13 @@ namespace CommitZeroBack.Controllers
                 return Unauthorized();
             }
         }
+
+        [HttpGet]
+        public IActionResult ValidateUser() {
+            if(Request.Headers["CommitZero-Key"] == Globals.CommitZeroKey) {
+                return Content(ValidateLogin.Execute(Request.Headers["Authorization"]).ToString());
+            }
+            return Unauthorized();
+        }
     }
 }

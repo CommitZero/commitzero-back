@@ -14,7 +14,7 @@ namespace CommitZeroBack.Controllers
         [HttpGet]
         public IActionResult ValidateUser()
         {
-            return Content(ValidateLogin.Execute(Request.Headers["Authorization"]).ToString());
+            return View();
         }
     }
 }

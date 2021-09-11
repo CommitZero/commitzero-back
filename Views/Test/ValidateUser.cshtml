@@ -5,10 +5,10 @@
         "Content-Type": "application/json",
         "Authorization" : "0BTAYWKKKJO1FJCH5VYF76QOI9LBQLAOZKUO1UUG02OM85N1TD8QNS0UK5SOB9UZ801VPOFB1IE5H5GDMKHCDK17J04W155Q8PD83SC5YWP5EVCFPF2QSHMOYUBPK"
     }
-    fetch("./Auth/ValidateUser", {
+    fetch("../Auth/ValidateUser", {
         method: 'GET',
         headers: head
     })
-    .then((response) => response.json())
+    .then((response) => response.text())
     .then((data) => console.log(data))
 </script>
