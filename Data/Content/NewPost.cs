@@ -6,7 +6,7 @@ using CommitZeroBack.Models;
 namespace CommitZeroBack.Data {
     public static class NewPost {
         public static string Execute(string access_token, string post_title, string post_cathegory,
-        string post_description, string post_content) {
+        string post_description, string post_content, string post_thumbnail) {
             string created_at = DateTime.Now.ToString();
             string updated_at = DateTime.Now.ToString();
             string author = string.Empty;
@@ -36,10 +36,14 @@ namespace CommitZeroBack.Data {
                     /* POST */
                     string post_script = @$"INSERT INTO posts (author_id, title, description, cathegory, author, 
                     content, created_at, updated_at) VALUES ({author_id}, '{post_title}', '{post_description}',
-                    '{post_cathegory}', '{author}', '{post_content}', '{created_at}', '{updated_at}')";
+                    '{post_cathegory}', '{author}', '{post_content}', '{created_at}', '{updated_at}');";
+
+                    string postlink_script = @$"INSERT INTO post_links (title, description, cathegory, author, miniature) 
+                    VALUES ('{post_title}', '{post_description}', '{post_cathegory}',
+                    '{author}', '{post_thumbnail}');";
 
                     conn_post.Open();
-                    NpgsqlCommand com_post = new (post_script, conn_post);
+                    NpgsqlCommand com_post = new (post_script + postlink_script, conn_post);
                     com_post.ExecuteNonQuery();
                     conn_post.Close();
 

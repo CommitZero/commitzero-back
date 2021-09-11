@@ -4,5 +4,6 @@ namespace CommitZeroBack.Models {
         public string description {get; set;}
         public string content {get; set;}
         public string cathegory {get; set;}
+        public string miniature {get; set;}
     }
 }

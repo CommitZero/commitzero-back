@@ -9,7 +9,7 @@ namespace CommitZeroBack.Controllers {
         public IActionResult CreatePost([FromBody] CreatePostRequest RequestRaw) {
             if(Request.Headers["CommitZero-Key"] == Globals.CommitZeroKey) {
                 return Content(NewPost.Execute(Request.Headers["Authorization"], RequestRaw.title,
-                RequestRaw.cathegory, RequestRaw.description, RequestRaw.content));
+                RequestRaw.cathegory, RequestRaw.description, RequestRaw.content, RequestRaw.miniature));
             }
             else {
                 return Unauthorized();
