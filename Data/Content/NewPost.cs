@@ -35,7 +35,7 @@ namespace CommitZeroBack.Data {
 
                     /* POST */
                     string post_script = @$"INSERT INTO posts (author_id, title, description, cathegory, author, 
-                    content, created_at, updated_at) VALUES ({author_id}. '{post_title}', '{post_description}',
+                    content, created_at, updated_at) VALUES ({author_id}, '{post_title}', '{post_description}',
                     '{post_cathegory}', '{author}', '{post_content}', '{created_at}', '{updated_at}')";
 
                     conn_post.Open();

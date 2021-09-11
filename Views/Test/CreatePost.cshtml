@@ -1,0 +1,20 @@
+<script>
+    //Teste de criação de postagem
+    var head = {
+        "CommitZero-Key": "AS3FR5G87U-12BL9-SWE67HJ890-SW23D",
+        "Content-Type": "application/json",
+        "Authorization" : "0BTAYWKKKJO1FJCH5VYF76QOI9LBQLAOZKUO1UUG02OM85N1TD8QNS0UK5SOB9UZ801VPOFB1IE5H5GDMKHCDK17J04W155Q8PD83SC5YWP5EVCFPF2QSHMOYUBPK"
+    }
+    fetch("../Content/CreatePost", {
+        method: 'POST',
+        headers: head,
+        body: JSON.stringify({
+            title: "PostTeste",
+            description: "asasadad",
+            cathegory: "sasadsad",
+            content: "asdjsauidhsauidhau"
+        })
+    })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+</script>
