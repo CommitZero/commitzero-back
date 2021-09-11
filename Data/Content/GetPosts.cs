@@ -11,7 +11,7 @@ namespace CommitZeroBack.Data {
             try {
                 NpgsqlConnection conn = new(Globals.ConnectionString);
 
-                string fetch_script = $"select * from post_liks order by id desc limit {quantity};";
+                string fetch_script = $"select * from post_links order by id desc limit {quantity};";
 
                 conn.Open();
 

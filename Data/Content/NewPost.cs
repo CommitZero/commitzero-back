@@ -12,7 +12,7 @@ namespace CommitZeroBack.Data {
             string author = string.Empty;
             int author_id = 0;
 
-            if (ValidateLogin.Execute(access_token)) {
+            if (Convert.ToBoolean(ValidateLogin.Execute(access_token))) {
                 try {
                     NpgsqlConnection conn_fetch = new(Globals.ConnectionString);
                     NpgsqlConnection conn_post = new(Globals.ConnectionString);

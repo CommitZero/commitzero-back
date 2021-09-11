@@ -1,17 +1,13 @@
 <script>
-    //Teste de Login
+    //Teste de obtenção de postagens
     var head = {
         "CommitZero-Key": "AS3FR5G87U-12BL9-SWE67HJ890-SW23D",
         "Content-Type": "application/json",
         "Authorization" : ""
     }
-    fetch("../Auth/UserLogin", {
-        method: 'POST',
-        headers: head,
-        body: JSON.stringify({
-            username: "TestUser",
-            password: "123456"
-        })
+    fetch("../Content/Posts?quantity=4", {
+        method: 'GET',
+        headers: head
     })
     .then((response) => response.json())
     .then((data) => console.log(data))

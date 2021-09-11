@@ -31,7 +31,8 @@ namespace CommitZeroBack.Data {
             if (RealPassword == password && RealUsername == username) {
                 const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
                 var SessionToken = new string(Enumerable.Repeat(chars, 125).Select(s => s[new Random().Next(s.Length)]).ToArray());
-                string session_script = $"UPDATE users SET sessiontoken='{SessionToken}', sessionip='{UserIp}', sessionexpiration='test'";
+                string session_script = @$"UPDATE users SET sessiontoken='{SessionToken}', sessionip='{UserIp}', 
+                sessionexpiration='{DateTime.Now.AddHours(12).ToString()}'";
 
                 NpgsqlCommand session_com = new (session_script, conn);
                 session_com.ExecuteNonQuery();

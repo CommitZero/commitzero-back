@@ -1,12 +1,15 @@
 using Npgsql;
 using CommitZeroBack.Tools;
 using System;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace CommitZeroBack.Data {
     public static class ValidateLogin {
         public static bool Execute(string access_token) {
             string RealSessionToken = string.Empty;
             string RealUserIp = string.Empty;
+            DateTime ExpirationDate = new();
             string UserIp = IpGetter.Get();
 
             try {
@@ -20,6 +23,8 @@ namespace CommitZeroBack.Data {
                 while(reader.Read()){
                     RealSessionToken = reader["sessiontoken"].ToString();
                     RealUserIp = reader["sessionip"].ToString();
+                    ExpirationDate = DateTime.ParseExact(reader["sessionexpiration"].ToString(),
+                    "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
                 }
 
                 conn.Close();
@@ -28,7 +33,7 @@ namespace CommitZeroBack.Data {
                 return false;
             }
 
-            if(access_token == RealSessionToken && UserIp == RealUserIp) {
+            if(access_token == RealSessionToken && UserIp == RealUserIp && DateTime.Now < ExpirationDate) {
                 return true;
             }
             return false;
