@@ -49,7 +49,7 @@ namespace CommitZeroBack
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Test}/{action=Login}/");
+                    pattern: "{controller=x}/{action=x}/");
             });
         }
     }

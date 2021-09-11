@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using CommitZeroBack.Data;
 
 namespace CommitZeroBack.Controllers
 {
@@ -8,6 +9,12 @@ namespace CommitZeroBack.Controllers
         public IActionResult Login()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult ValidateUser()
+        {
+            return Content(ValidateLogin.Execute(Request.Headers["Authorization"]).ToString());
         }
     }
 }
