@@ -1,10 +1,10 @@
-namespace CommitZeroBack.Data {
+namespace CommitZeroBack.Models {
     public class PostLink {
-        public static int id {get; set;}
-        public static string title {get; set;}
-        public static string description {get; set;}
-        public static string cathegory {get; set;}
-        public static string author {get; set;}
-        public static string miniature {get; set;}
+        public int id {get; set;}
+        public string title {get; set;}
+        public string description {get; set;}
+        public string cathegory {get; set;}
+        public string author {get; set;}
+        public string miniature {get; set;}
     }
 }
