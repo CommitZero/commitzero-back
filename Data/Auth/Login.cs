@@ -1,7 +1,9 @@
 using Npgsql;
 using System.Linq;
+using System.Text.Json;
 using System;
 using CommitZeroBack.Tools;
+using CommitZeroBack.Models;
 
 namespace CommitZeroBack.Data {
     public static class Login {
@@ -30,11 +32,11 @@ namespace CommitZeroBack.Data {
 
                 NpgsqlCommand session_com = new (session_script, conn);
                 session_com.ExecuteNonQuery();
-                return 
+                return JsonSerializer.Serialize(new Response() { data = SessionToken });
             }
 
             conn.Close();
-
+            return JsonSerializer.Serialize(new Response() { data = "[Error]" });
         }
     }
 }
