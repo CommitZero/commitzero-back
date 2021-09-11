@@ -25,6 +25,9 @@ namespace CommitZeroBack.Data {
                 RealUsername = reader["username"].ToString();
             }
 
+            conn.Close();
+            conn.Open();
+
             if (RealPassword == password && RealUsername == username) {
                 const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
                 var SessionToken = new string(Enumerable.Repeat(chars, 125).Select(s => s[new Random().Next(s.Length)]).ToArray());
