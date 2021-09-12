@@ -12,7 +12,7 @@ namespace CommitZeroBack.Controllers
         [HttpPost]
         public IActionResult userLogin([FromBody] LoginRequest RequestRaw)
         {
-            if(Request.Headers["CommitZero-Key"] == Globals.CommitZeroKey) {
+            if(Request.Headers["API_KEY"] == Globals.API_KEY) {
                 return Content(Login.Execute(RequestRaw.username, RequestRaw.password));
             }
             else {
@@ -22,7 +22,7 @@ namespace CommitZeroBack.Controllers
 
         [HttpGet]
         public IActionResult validateUser() {
-            if(Request.Headers["CommitZero-Key"] == Globals.CommitZeroKey) {
+            if(Request.Headers["API_KEY"] == Globals.API_KEY) {
                 return Content(ValidateLogin.Execute(Request.Headers["Authorization"]).ToString());
             }
             return Unauthorized();
