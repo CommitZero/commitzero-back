@@ -14,7 +14,7 @@ namespace CommitZeroBack.Tools {
 
             foreach (char c in data)
             {
-                if (!Char.IsLetterOrDigit(c) && c != '_')
+                if (!Char.IsLetterOrDigit(c) && c != '_' && c != ' ')
                     return false;
             }
 

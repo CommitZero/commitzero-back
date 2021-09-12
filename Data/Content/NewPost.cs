@@ -13,12 +13,9 @@ namespace CommitZeroBack.Data {
             string author = string.Empty;
             int author_id = 0;
 
-            if (!ValidData.IsValid(access_token) || !ValidData.IsValid(post_title) ||
-            !ValidData.IsValid(post_cathegory) || !ValidData.IsValid(post_description) ||
-            !ValidData.IsValid(post_content) || !ValidData.IsValid(image_url)
-            ) {
+            if (!ValidData.IsValid(access_token)) {
                 return JsonSerializer.Serialize(new Response() {
-                    data = "Erro"
+                    data = "Erro - Dados inválidos"
                 });
             }
 

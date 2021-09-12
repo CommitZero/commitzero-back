@@ -13,7 +13,7 @@ namespace CommitZeroBack.Data {
 
                     /* FETCH */
 
-                    string fetch_script = $"DELETE FROM posts WHERE id='{post_id}'";
+                    string fetch_script = $"DELETE FROM posts WHERE id='{post_id}'; DELETE FROM post_links WHERE id='{post_id}';";
 
                     conn.Open();
 
