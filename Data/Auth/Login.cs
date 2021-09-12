@@ -12,6 +12,11 @@ namespace CommitZeroBack.Data {
             string RealPassword = string.Empty;
             string UserIp = IpGetter.Get();
 
+            if (!ValidData.IsValid(username) || !ValidData.IsValid(password)) {
+                return JsonSerializer.Serialize(new Response() {
+                    data = "Erro"
+                });
+            }
 
             NpgsqlConnection conn = new(Globals.ConnectionString);
             string compare_script = $"SELECT * FROM users WHERE username='{username}' AND password='{password}'";

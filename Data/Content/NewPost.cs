@@ -2,6 +2,7 @@ using Npgsql;
 using System;
 using System.Text.Json;
 using CommitZeroBack.Models;
+using CommitZeroBack.Tools;
 
 namespace CommitZeroBack.Data {
     public static class NewPost {
@@ -11,6 +12,15 @@ namespace CommitZeroBack.Data {
             string updated_at = DateTime.Now.ToString();
             string author = string.Empty;
             int author_id = 0;
+
+            if (!ValidData.IsValid(access_token) || !ValidData.IsValid(post_title) ||
+            !ValidData.IsValid(post_cathegory) || !ValidData.IsValid(post_description) ||
+            !ValidData.IsValid(post_content) || !ValidData.IsValid(image_url)
+            ) {
+                return JsonSerializer.Serialize(new Response() {
+                    data = "Erro"
+                });
+            }
 
             if (Convert.ToBoolean(ValidateLogin.Execute(access_token))) {
                 try {

@@ -2,7 +2,6 @@ using Npgsql;
 using CommitZeroBack.Tools;
 using System;
 using System.Globalization;
-using System.Text.RegularExpressions;
 
 namespace CommitZeroBack.Data {
     public static class ValidateLogin {
@@ -11,6 +10,8 @@ namespace CommitZeroBack.Data {
             string RealUserIp = string.Empty;
             DateTime ExpirationDate = new();
             string UserIp = IpGetter.Get();
+
+            if(!ValidData.IsValid(access_token)) return false;
 
             try {
                 NpgsqlConnection conn = new(Globals.ConnectionString);

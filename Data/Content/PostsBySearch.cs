@@ -3,11 +3,19 @@ using CommitZeroBack.Models;
 using System.Collections.Generic;
 using System.Text.Json;
 using System;
+using CommitZeroBack.Tools;
 
 namespace CommitZeroBack.Data {
     public static class PostsBySearch { 
         public static string Execute(string search_string, int quantity) {
             List<PostLink> posts = new();
+
+            if (!ValidData.IsValid(search_string)) {
+                return JsonSerializer.Serialize(new Response() {
+                    data = "Erro"
+                });
+            }
+
             try {
                 NpgsqlConnection conn = new(Globals.ConnectionString);
 
