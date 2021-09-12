@@ -4,13 +4,13 @@ using CommitZeroBack.Data;
 
 namespace CommitZeroBack.Controllers
 {
-    public class AuthController : Controller
+    public class authController : Controller
     {
         /*
             Header "CommitZero-Key" - Necessário para todas as ações dentro do site
          */
         [HttpPost]
-        public IActionResult UserLogin([FromBody] LoginRequest RequestRaw)
+        public IActionResult userLogin([FromBody] LoginRequest RequestRaw)
         {
             if(Request.Headers["CommitZero-Key"] == Globals.CommitZeroKey) {
                 return Content(Login.Execute(RequestRaw.username, RequestRaw.password));
@@ -21,7 +21,7 @@ namespace CommitZeroBack.Controllers
         }
 
         [HttpGet]
-        public IActionResult ValidateUser() {
+        public IActionResult validateUser() {
             if(Request.Headers["CommitZero-Key"] == Globals.CommitZeroKey) {
                 return Content(ValidateLogin.Execute(Request.Headers["Authorization"]).ToString());
             }
