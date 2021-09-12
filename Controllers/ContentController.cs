@@ -5,6 +5,15 @@ using CommitZeroBack.Data;
 namespace CommitZeroBack.Controllers {
     public class contentController : Controller
     {
+        [HttpDelete]
+        public IActionResult deletePost([FromBody] DeletePostRequest RequestRaw) {
+            if(Request.Headers["CommitZero-Key"] == Globals.CommitZeroKey) {
+                return Content(DeletePost.Execute(Request.Headers["Authorization"], RequestRaw.id));
+            }
+            else {
+                return Unauthorized();
+            }
+        }
         [HttpPost]
         public IActionResult createPost([FromBody] CreatePostRequest RequestRaw) {
             if(Request.Headers["CommitZero-Key"] == Globals.CommitZeroKey) {
