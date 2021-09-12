@@ -34,8 +34,7 @@ namespace CommitZeroBack.Data {
             conn.Open();
 
             if (RealPassword == password && RealUsername == username) {
-                const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-                var SessionToken = new string(Enumerable.Repeat(chars, 125).Select(s => s[new Random().Next(s.Length)]).ToArray());
+                var SessionToken = GenerateHash.Execute(username + password + new Random().Next());
                 string session_script = @$"UPDATE users SET sessiontoken='{SessionToken}', sessionip='{UserIp}', 
                 sessionexpiration='{DateTime.Now.AddHours(12).ToString()}'";
 
