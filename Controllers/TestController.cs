@@ -28,5 +28,11 @@ namespace CommitZeroBack.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult SearchPosts()
+        {
+            return View();
+        }
     }
 }

@@ -5,13 +5,14 @@ using System.Text.Json;
 using System;
 
 namespace CommitZeroBack.Data {
-    public static class GetPosts {
-        public static string Execute(int quantity) {
+    public static class PostsBySearch { 
+        public static string Execute(string search_string, int quantity) {
             List<PostLink> posts = new();
             try {
                 NpgsqlConnection conn = new(Globals.ConnectionString);
 
-                string fetch_script = $"select * from post_links order by id desc limit {quantity};";
+                string fetch_script = @$"select * from post_links where (title = '{search_string}') 
+                order by id desc limit {quantity};";
 
                 conn.Open();
 
@@ -38,4 +39,4 @@ namespace CommitZeroBack.Data {
             }
         }
     }
-}
+ }

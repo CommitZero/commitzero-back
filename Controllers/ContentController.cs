@@ -25,5 +25,25 @@ namespace CommitZeroBack.Controllers {
                 return Unauthorized();
             }
         }
+
+        [HttpGet]
+        public IActionResult GetPost(int id) {
+            if(Request.Headers["CommitZero-Key"] == Globals.CommitZeroKey) {
+                return Content(DetailedPost.Execute(id));
+            }
+            else {
+                return Unauthorized();
+            }
+        }
+
+        [HttpGet]
+        public IActionResult PostSearch(string search, int quantity) {
+            if(Request.Headers["CommitZero-Key"] == Globals.CommitZeroKey) {
+                return Content(PostsBySearch.Execute(search, quantity));
+            }
+            else {
+                return Unauthorized();
+            }
+        }
     }
 }

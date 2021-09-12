@@ -38,7 +38,7 @@ namespace CommitZeroBack.Data {
                     content, created_at, updated_at) VALUES ({author_id}, '{post_title}', '{post_description}',
                     '{post_cathegory}', '{author}', '{post_content}', '{created_at}', '{updated_at}');";
 
-                    string postlink_script = @$"INSERT INTO post_links (title, description, cathegory, author, miniature) 
+                    string postlink_script = @$"INSERT INTO post_links (title, description, cathegory, author, image_url) 
                     VALUES ('{post_title}', '{post_description}', '{post_cathegory}',
                     '{author}', '{post_thumbnail}');";
 
