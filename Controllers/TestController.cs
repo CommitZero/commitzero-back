@@ -34,5 +34,11 @@ namespace CommitZeroBack.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult DeletePost()
+        {
+            return View();
+        }
     }
 }

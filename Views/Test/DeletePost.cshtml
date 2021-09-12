@@ -1,0 +1,17 @@
+<script>
+    //Teste de criação de postagem
+    var head = {
+        "CommitZero-Key": "AS3FR5G87U-12BL9-SWE67HJ890-SW23D",
+        "Content-Type": "application/json",
+        "Authorization" : "6E9R3LGZGS06ZTG8163WKGX1CRN1A4R0GHLSUPG2OGQDI2FQGS8OKCNQG7ECYFPC10QI7OEBQ184PKI9CWKHV2F4TVCMB339RECICWJSEXYJ4J0WP502U7HYLLPCC"
+    }
+    fetch("../content/deletePost", {
+        method: 'DELETE',
+        headers: head,
+        body: JSON.stringify({
+            id: 7
+        })
+    })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+</script>
