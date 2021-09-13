@@ -9,5 +9,13 @@ namespace CommitZeroBack.Data {
             $"User Id={Environment.GetEnvironmentVariable("POSTGRES_USER")};" +
             $"Password={Environment.GetEnvironmentVariable("POSTGRES_PASSWORD")}";
         }
+
+        public static string MigrationString() {
+            return $"Server={Environment.GetEnvironmentVariable("POSTGRES_HOST")};" + 
+            $"Port={Environment.GetEnvironmentVariable("POSTGRES_PORT")};" + 
+            $"Database=postgres;" +
+            $"User Id={Environment.GetEnvironmentVariable("POSTGRES_USER")};" +
+            $"Password={Environment.GetEnvironmentVariable("POSTGRES_PASSWORD")}";
+        }
     };
 }
