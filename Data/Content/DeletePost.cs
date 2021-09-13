@@ -9,7 +9,7 @@ namespace CommitZeroBack.Data {
 
             if (Convert.ToBoolean(ValidateLogin.Execute(access_token))) {
                 try {
-                    NpgsqlConnection conn = new(Globals.ConnectionString);
+                    NpgsqlConnection conn = new(Globals.ConnectionString());
 
                     /* FETCH */
 

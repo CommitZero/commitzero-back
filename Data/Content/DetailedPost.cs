@@ -9,7 +9,7 @@ namespace CommitZeroBack.Data {
         public static string Execute(int id) {
             List<Post> posts = new();
             try {
-                NpgsqlConnection conn = new(Globals.ConnectionString);
+                NpgsqlConnection conn = new(Globals.ConnectionString());
 
                 string fetch_script = @$"select * from posts where (id = '{id}');";
 

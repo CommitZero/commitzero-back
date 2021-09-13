@@ -14,7 +14,7 @@ namespace CommitZeroBack.Data {
             if(!ValidData.IsValid(access_token)) return false;
 
             try {
-                NpgsqlConnection conn = new(Globals.ConnectionString);
+                NpgsqlConnection conn = new(Globals.ConnectionString());
                 string compare_script = $"select * FROM users WHERE (sessiontoken='{access_token}' AND sessionip='{UserIp}')";
                 
                 conn.Open();

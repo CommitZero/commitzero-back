@@ -18,7 +18,7 @@ namespace CommitZeroBack.Data {
                 });
             }
 
-            NpgsqlConnection conn = new(Globals.ConnectionString);
+            NpgsqlConnection conn = new(Globals.ConnectionString());
             string compare_script = $"SELECT * FROM users WHERE username='{username}' AND password='{password}'";
             
             conn.Open();

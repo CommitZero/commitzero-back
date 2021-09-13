@@ -21,8 +21,8 @@ namespace CommitZeroBack.Data {
 
             if (Convert.ToBoolean(ValidateLogin.Execute(access_token))) {
                 try {
-                    NpgsqlConnection conn_fetch = new(Globals.ConnectionString);
-                    NpgsqlConnection conn_post = new(Globals.ConnectionString);
+                    NpgsqlConnection conn_fetch = new(Globals.ConnectionString());
+                    NpgsqlConnection conn_post = new(Globals.ConnectionString());
 
                     /* FETCH */
 
