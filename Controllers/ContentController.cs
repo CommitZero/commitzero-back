@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using CommitZeroBack.Models;
 using CommitZeroBack.Data;
+using System;
 
 namespace CommitZeroBack.Controllers {
     public class contentController : Controller
     {
         [HttpDelete]
         public IActionResult deletePost([FromBody] DeletePostRequest RequestRaw) {
-            if(Request.Headers["API_KEY"] == Globals.API_KEY) {
+            if(Request.Headers["API_KEY"] == Environment.GetEnvironmentVariable("API_KEY")) {
                 return Content(DeletePost.Execute(Request.Headers["Authorization"], RequestRaw.id));
             }
             else {
@@ -16,7 +17,7 @@ namespace CommitZeroBack.Controllers {
         }
         [HttpPost]
         public IActionResult createPost([FromBody] CreatePostRequest RequestRaw) {
-            if(Request.Headers["API_KEY"] == Globals.API_KEY) {
+            if(Request.Headers["API_KEY"] == Environment.GetEnvironmentVariable("API_KEY")) {
                 return Content(NewPost.Execute(Request.Headers["Authorization"], RequestRaw.title,
                 RequestRaw.cathegory, RequestRaw.description, RequestRaw.content, RequestRaw.image_url));
             }
@@ -27,7 +28,7 @@ namespace CommitZeroBack.Controllers {
 
         [HttpGet]
         public IActionResult posts(int id, int quantity) {
-            if(Request.Headers["API_KEY"] == Globals.API_KEY) {
+            if(Request.Headers["API_KEY"] == Environment.GetEnvironmentVariable("API_KEY")) {
                 if(id != 0) return Content(DetailedPost.Execute(id));
                 if(quantity != 0) return Content(GetPosts.Execute(quantity));
                 return Content(GetPosts.Execute(9999));
@@ -39,7 +40,7 @@ namespace CommitZeroBack.Controllers {
 
         [HttpGet]
         public IActionResult postSearch(string search, int quantity) {
-            if(Request.Headers["API_KEY"] == Globals.API_KEY) {
+            if(Request.Headers["API_KEY"] == Environment.GetEnvironmentVariable("API_KEY")) {
                 if(quantity != 0 && search != "") return Content(PostsBySearch.Execute(search, quantity));
             }
             else {

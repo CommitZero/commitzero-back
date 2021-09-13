@@ -1,7 +1,7 @@
 <script>
     //Teste de Login
     var head = {
-        "CommitZero-Key": "AS3FR5G87U-12BL9-SWE67HJ890-SW23D",
+        "API_KEY": "AS3FR5G87U-12BL9-SWE67HJ890-SW23D",
         "Content-Type": "application/json",
         "Authorization" : ""
     }
@@ -13,6 +13,6 @@
             password: "quasar_push8486"
         })
     })
-    .then((response) => response.json())
+    .then((response) => response.text())
     .then((data) => console.log(data))
 </script>

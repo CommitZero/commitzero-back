@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CommitZeroBack.Models;
 using CommitZeroBack.Data;
+using System;
 
 namespace CommitZeroBack.Controllers
 {
@@ -12,7 +13,7 @@ namespace CommitZeroBack.Controllers
         [HttpPost]
         public IActionResult userLogin([FromBody] LoginRequest RequestRaw)
         {
-            if(Request.Headers["API_KEY"] == Globals.API_KEY) {
+            if(Request.Headers["API_KEY"] == Environment.GetEnvironmentVariable("API_KEY")) {
                 return Content(Login.Execute(RequestRaw.username, RequestRaw.password));
             }
             else {
@@ -22,7 +23,7 @@ namespace CommitZeroBack.Controllers
 
         [HttpGet]
         public IActionResult validateUser() {
-            if(Request.Headers["API_KEY"] == Globals.API_KEY) {
+            if(Request.Headers["API_KEY"] == Environment.GetEnvironmentVariable("API_KEY")) {
                 return Content(ValidateLogin.Execute(Request.Headers["Authorization"]).ToString());
             }
             return Unauthorized();
