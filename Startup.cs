@@ -29,11 +29,14 @@ namespace CommitZeroBack
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            /*
+            Environment.SetEnvironmentVariable("API_KEY", "AS3FR5G87U-12BL9-SWE67HJ890-SW23D");
             Environment.SetEnvironmentVariable("POSTGRES_HOST", "localhost");
             Environment.SetEnvironmentVariable("POSTGRES_PORT", "5432");
             Environment.SetEnvironmentVariable("POSTGRES_DB", "commitzerodev");
             Environment.SetEnvironmentVariable("POSTGRES_USER", "postgres");
             Environment.SetEnvironmentVariable("POSTGRES_PASSWORD", "123");
+            */
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
