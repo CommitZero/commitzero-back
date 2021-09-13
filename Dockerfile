@@ -10,5 +10,5 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR /app
 COPY --from=build /out/ /app
 
-EXPOSE 5000
+EXPOSE 80
 ENTRYPOINT ["dotnet", "/app/CommitZeroBack.dll"]
