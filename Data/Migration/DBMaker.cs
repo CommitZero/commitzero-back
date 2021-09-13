@@ -4,12 +4,12 @@ using System;
 namespace CommitZeroBack.Data {
     public static class DBMaker {
         public static string Execute() {
-            string script_init = @"
-                CREATE DATABASE commitzero;
+            string script_init = $@"
+                CREATE DATABASE {Environment.GetEnvironmentVariable("POSTGRES_DB")};
             ";
 
-            string script_actions = @"                
-                CREATE TABLE commitzero.public.users (
+            string script_actions = $@"                
+                CREATE TABLE {Environment.GetEnvironmentVariable("POSTGRES_DB")}.public.users (
                     id serial NOT NULL,
                     username varchar(99) NOT NULL,
                     password varchar(99) NOT NULL,
@@ -18,7 +18,7 @@ namespace CommitZeroBack.Data {
                     sessionexpiration varchar(99)
                 );
 
-                CREATE TABLE commitzero.public.post_links (
+                CREATE TABLE {Environment.GetEnvironmentVariable("POSTGRES_DB")}.public.post_links (
                     id serial NOT NULL,
                     title varchar(99) NOT NULL,
                     cathegory varchar(99) NOT NULL,
@@ -27,7 +27,7 @@ namespace CommitZeroBack.Data {
                     image_url varchar(99) NOT NULL
                 );
 
-                CREATE TABLE commitzero.public.posts (
+                CREATE TABLE {Environment.GetEnvironmentVariable("POSTGRES_DB")}.public.posts (
                     id serial NOT NULL,
                     author_id int NOT NULL,
                     title varchar(99) NOT NULL,
