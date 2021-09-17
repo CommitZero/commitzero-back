@@ -13,7 +13,7 @@ namespace CommitZeroBack.Controllers
         [HttpPost]
         public IActionResult userLogin([FromBody] LoginRequest RequestRaw)
         {
-            if(Request.Headers["API_KEY"] == Environment.GetEnvironmentVariable("API_KEY")) {
+            if(Request.Headers["API_KEY"] == ConfigManager.api_key()) {
                 return Content(Login.Execute(RequestRaw.username, RequestRaw.password));
             }
             else {
@@ -23,7 +23,7 @@ namespace CommitZeroBack.Controllers
 
         [HttpGet]
         public IActionResult validateUser() {
-            if(Request.Headers["API_KEY"] == Environment.GetEnvironmentVariable("API_KEY")) {
+            if(Request.Headers["API_KEY"] == ConfigManager.api_key()) {
                 return Content(ValidateLogin.Execute(Request.Headers["Authorization"]).ToString());
             }
             return Unauthorized();

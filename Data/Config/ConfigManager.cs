@@ -25,6 +25,10 @@ namespace CommitZeroBack.Data {
             return AppConfig().postgres_password;
         }
 
+        public static string postgres_db() {
+            return AppConfig().postgres_db;
+        }
+
         public static Config AppConfig() {
             return JsonSerializer.Deserialize<Config>(File.ReadAllText(Directory.GetCurrentDirectory() + @"/environment.json"));
         }

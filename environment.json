@@ -1,7 +1,8 @@
 {
     "api_key": "AS3FR5G87U-12BL9-SWE67HJ890-SW23D",
     "postgres_host": "localhost",
+    "postgres_user": "postgres",
     "postgres_password": "123",
     "postgres_port": "5432",
-    "postgres_db": "postgres"
+    "postgres_db": "commitzerodev"
 }
