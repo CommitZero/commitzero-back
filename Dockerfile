@@ -1,26 +1,20 @@
-FROM mcr.microsoft.com/dotnet/sdk:5.0 as build
-WORKDIR /src
-COPY CommitZeroBack.csproj .
-RUN dotnet restore
-
-COPY / .
-RUN dotnet publish -c Release -o /out
-
-FROM mcr.microsoft.com/dotnet/aspnet:5.0 
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
 WORKDIR /app
-COPY --from=build /out/ /app
 
-ARG POSTGRES_DB
-ARG POSTGRES_USER
-ARG POSTGRES_PASSWORD
-ARG POSTGRES_PORT
-ARG API_KEY
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+WORKDIR /src
+COPY . .
+RUN dotnet restore 
+RUN dotnet build --no-restore -c Release -o /app
 
-ENV POSTGRES_DB=$POSTGRES_DB
-ENV POSTGRES_USER=$POSTGRES_USER
-ENV POSTGRES_PASSWORD=$POSTGRES_PASSWORD
-ENV POSTGRES_PORT=$POSTGRES_PORT
-ENV API_KEY=$API_KEY
+FROM build AS publish
+RUN dotnet publish --no-restore -c Release -o /app
 
-EXPOSE 80
-ENTRYPOINT ["dotnet", "/app/CommitZeroBack.dll"]
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
+# Padrão de container ASP.NET
+# ENTRYPOINT ["dotnet", "CarterAPI.dll"]
+# Opção utilizada pelo Heroku
+
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet CarterAPI.dll

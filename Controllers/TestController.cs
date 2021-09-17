@@ -1,11 +1,18 @@
-/*
 using Microsoft.AspNetCore.Mvc;
-using CommitZeroBack.Data;
+using CommitZeroBack.Models;
+using System.Configuration;
+using System.IO;
+using System.Text;
 
 namespace CommitZeroBack.Controllers
 {
     public class TestController : Controller
     {
+        [HttpGet]
+        public IActionResult Teste() {
+            var config_content = System.IO.File.ReadAllText(Directory.GetCurrentDirectory() + @"/environment.json");
+            return Content("");
+        }
         [HttpGet]
         public IActionResult Login()
         {
@@ -43,4 +50,3 @@ namespace CommitZeroBack.Controllers
         }
     }
 }
-*/
