@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using CommitZeroBack.Models;
 using System.Configuration;
-using System.IO;
-using System.Text;
+using CommitZeroBack.Data;
 
 namespace CommitZeroBack.Controllers
 {
@@ -10,8 +9,7 @@ namespace CommitZeroBack.Controllers
     {
         [HttpGet]
         public IActionResult Teste() {
-            var config_content = System.IO.File.ReadAllText(Directory.GetCurrentDirectory() + @"/environment.json");
-            return Content("");
+            return Content(ConfigManager.api_key());
         }
         [HttpGet]
         public IActionResult Login()
