@@ -41,10 +41,7 @@ namespace CommitZeroBack.Data {
                 NpgsqlCommand session_com = new NpgsqlCommand(session_script, conn);
                 session_com.ExecuteNonQuery();
                 return JsonSerializer.Serialize(new Response() { 
-                    data = @"{
-                        token: '" + SessionToken + @"',
-                        username: '" + RealUsername + @"'
-                    }"
+                    data = "{token: \"" + SessionToken + "\", username: \"" + RealUsername + "\"}"
                 });
             }
 
