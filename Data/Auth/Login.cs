@@ -43,7 +43,7 @@ namespace CommitZeroBack.Data {
                 return JsonSerializer.Serialize(new Response() { 
                     data = @"{
                         token: '" + SessionToken + @"',
-                        token: '" + RealUsername + @"'
+                        username: '" + RealUsername + @"'
                     }"
                 });
             }
