@@ -7,15 +7,15 @@ using System;
 namespace CommitZeroBack.Data {
     public static class DetailedPost {
         public static string Execute(int id) {
-            List<Post> posts = new();
+            List<Post> posts = new List<Post>();
             try {
-                NpgsqlConnection conn = new(Globals.ConnectionString());
+                NpgsqlConnection conn = new NpgsqlConnection(Globals.ConnectionString());
 
                 string fetch_script = @$"select * from posts where (id = '{id}');";
 
                 conn.Open();
 
-                NpgsqlCommand com = new (fetch_script, conn);
+                NpgsqlCommand com = new NpgsqlCommand(fetch_script, conn);
                 NpgsqlDataReader reader = com.ExecuteReader();
                 
                 while(reader.Read()){

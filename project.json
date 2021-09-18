@@ -1,0 +1,7 @@
+{
+    "dependencies": {
+        "Microsoft.NETCore": "5.0.0",
+        "System.Runtime.Serialization.Primitives": "4.0.10",
+        "Npgsql": "5.0.7"
+    }
+}

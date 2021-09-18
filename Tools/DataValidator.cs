@@ -3,7 +3,7 @@ using System;
 
 namespace CommitZeroBack.Tools {
     public static class ValidData {
-        private static List<string> InvalidValues = new() {
+        private static List<string> InvalidValues = new List<string>() {
             "DELETE", "WHERE", "FROM", "*", "SELECT", "DROP", "DATABASE", "UPDATE", "SET"
         };
 

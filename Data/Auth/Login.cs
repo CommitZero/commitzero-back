@@ -18,12 +18,12 @@ namespace CommitZeroBack.Data {
                 });
             }
 
-            NpgsqlConnection conn = new(Globals.ConnectionString());
+            NpgsqlConnection conn = new NpgsqlConnection(Globals.ConnectionString());
             string compare_script = $"SELECT * FROM users WHERE username='{username}' AND password='{password}'";
             
             conn.Open();
 
-            NpgsqlCommand com = new (compare_script, conn);
+            NpgsqlCommand com = new NpgsqlCommand(compare_script, conn);
             NpgsqlDataReader reader = com.ExecuteReader();
             while(reader.Read()){
                 RealPassword = reader["password"].ToString();
@@ -38,7 +38,7 @@ namespace CommitZeroBack.Data {
                 string session_script = @$"UPDATE users SET sessiontoken='{SessionToken}', sessionip='{UserIp}', 
                 sessionexpiration='{DateTime.Now.AddHours(12).ToString()}'";
 
-                NpgsqlCommand session_com = new (session_script, conn);
+                NpgsqlCommand session_com = new NpgsqlCommand(session_script, conn);
                 session_com.ExecuteNonQuery();
                 return JsonSerializer.Serialize(new Response() { data = SessionToken });
             }

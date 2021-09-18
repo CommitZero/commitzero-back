@@ -9,7 +9,7 @@ namespace CommitZeroBack.Data {
 
             if (Convert.ToBoolean(ValidateLogin.Execute(access_token))) {
                 try {
-                    NpgsqlConnection conn = new(Globals.ConnectionString());
+                    NpgsqlConnection conn = new NpgsqlConnection(Globals.ConnectionString());
 
                     /* FETCH */
 
@@ -17,7 +17,7 @@ namespace CommitZeroBack.Data {
 
                     conn.Open();
 
-                    NpgsqlCommand com = new (fetch_script, conn);
+                    NpgsqlCommand com = new NpgsqlCommand(fetch_script, conn);
                     com.ExecuteNonQuery();
 
                     conn.Close();

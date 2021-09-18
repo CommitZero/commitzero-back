@@ -7,7 +7,7 @@ using System;
 namespace CommitZeroBack.Data {
     public static class GetPosts {
         public static string Execute(int quantity) {
-            List<PostLink> posts = new();
+            List<PostLink> posts = new List<PostLink>();
             try {
                 NpgsqlConnection conn = new(Globals.ConnectionString());
 
