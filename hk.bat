@@ -1,0 +1,1 @@
+heroku pg:credentials:url DATABASE

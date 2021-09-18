@@ -2,9 +2,21 @@ using Microsoft.AspNetCore.Mvc;
 using CommitZeroBack.Models;
 using System.Text.Json;
 using System.IO;
+using System.Diagnostics;
 
 namespace CommitZeroBack.Data {
     public static class ConfigManager {
+        public static string connection_string() {
+            Process p = new Process();
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.FileName = "hk.bat";
+            p.Start();
+            string output = p.StandardOutput.ReadToEnd();
+            p.WaitForExit();
+            return output;
+        }
+
         public static string api_key() {
             return AppConfig().api_key;
         }
