@@ -9,7 +9,7 @@ namespace CommitZeroBack.Controllers
     {
         [HttpGet]
         public IActionResult Teste() {
-            return Content(ConfigManager.connection_string());
+            return Content(ConfigManager.api_key());
         }
         [HttpGet]
         public IActionResult Login()
