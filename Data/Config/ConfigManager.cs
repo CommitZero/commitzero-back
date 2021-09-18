@@ -2,19 +2,26 @@ using Microsoft.AspNetCore.Mvc;
 using CommitZeroBack.Models;
 using System.Text.Json;
 using System.IO;
-using System.Diagnostics;
+using System;
+using Npgsql;
 
 namespace CommitZeroBack.Data {
     public static class ConfigManager {
         public static string connection_string() {
-            Process p = new Process();
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.FileName = "hk.bat";
-            p.Start();
-            string output = p.StandardOutput.ReadToEnd();
-            p.WaitForExit();
-            return output;
+            var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+            var databaseUri = new Uri(databaseUrl);
+            var userInfo = databaseUri.UserInfo.Split(':');
+
+            var builder = new NpgsqlConnectionStringBuilder
+            {
+                Host = databaseUri.Host,
+                Port = databaseUri.Port,
+                Username = userInfo[0],
+                Password = userInfo[1],
+                Database = databaseUri.LocalPath.TrimStart('/')
+            };
+
+            return builder.ToString();
         }
 
         public static string api_key() {
