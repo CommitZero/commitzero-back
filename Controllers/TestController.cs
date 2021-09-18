@@ -1,3 +1,5 @@
+/*
+
 using Microsoft.AspNetCore.Mvc;
 using CommitZeroBack.Models;
 using System.Configuration;
@@ -44,3 +46,5 @@ namespace CommitZeroBack.Controllers
         }
     }
 }
+
+*/
