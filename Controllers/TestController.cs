@@ -8,10 +8,6 @@ namespace CommitZeroBack.Controllers
     public class TestController : Controller
     {
         [HttpGet]
-        public IActionResult Teste() {
-            return Content(ConfigManager.connection_string());
-        }
-        [HttpGet]
         public IActionResult Login()
         {
             return View();
