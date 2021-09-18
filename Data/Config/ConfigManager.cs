@@ -21,7 +21,7 @@ namespace CommitZeroBack.Data {
                 Database = databaseUri.LocalPath.TrimStart('/')
             };
 
-            return builder.ToString();
+            return builder.ToString() + "; sslmode=require";
         }
 
         public static string api_key() {
