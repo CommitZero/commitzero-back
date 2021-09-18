@@ -21,8 +21,8 @@ namespace CommitZeroBack.Data {
 
             if (Convert.ToBoolean(ValidateLogin.Execute(access_token))) {
                 try {
-                    NpgsqlConnection conn_fetch = new(Globals.ConnectionString());
-                    NpgsqlConnection conn_post = new(Globals.ConnectionString());
+                    NpgsqlConnection conn_fetch = new NpgsqlConnection(Globals.ConnectionString());
+                    NpgsqlConnection conn_post = new NpgsqlConnection(Globals.ConnectionString());
 
                     /* FETCH */
 
@@ -30,7 +30,7 @@ namespace CommitZeroBack.Data {
 
                     conn_fetch.Open();
 
-                    NpgsqlCommand com_fetch = new (fetch_script, conn_fetch);
+                    NpgsqlCommand com_fetch = new NpgsqlCommand(fetch_script, conn_fetch);
                     NpgsqlDataReader reader = com_fetch.ExecuteReader();
                     
                     while(reader.Read()){
@@ -50,7 +50,7 @@ namespace CommitZeroBack.Data {
                     '{author}', '{image_url}');";
 
                     conn_post.Open();
-                    NpgsqlCommand com_post = new (post_script + postlink_script, conn_post);
+                    NpgsqlCommand com_post = new NpgsqlCommand(post_script + postlink_script, conn_post);
                     com_post.ExecuteNonQuery();
                     conn_post.Close();
 

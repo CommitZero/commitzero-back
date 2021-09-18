@@ -9,13 +9,13 @@ namespace CommitZeroBack.Data {
         public static string Execute(int quantity) {
             List<PostLink> posts = new List<PostLink>();
             try {
-                NpgsqlConnection conn = new(Globals.ConnectionString());
+                NpgsqlConnection conn = new NpgsqlConnection(Globals.ConnectionString());
 
                 string fetch_script = $"select * from post_links order by id desc limit {quantity};";
 
                 conn.Open();
 
-                NpgsqlCommand com = new (fetch_script, conn);
+                NpgsqlCommand com = new NpgsqlCommand(fetch_script, conn);
                 NpgsqlDataReader reader = com.ExecuteReader();
                 
                 while(reader.Read()){
